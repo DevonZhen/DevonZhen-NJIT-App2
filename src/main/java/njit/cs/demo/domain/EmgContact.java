@@ -24,4 +24,54 @@ public class EmgContact {
 	
 	@Column(name = "PER_ID")
 	private Integer personId;
+
+	public Integer getEmgContactId() {
+		return emgContactId;
+	}
+
+	public void setEmgContactId(Integer emgContactId) {
+		this.emgContactId = emgContactId;
+	}
+
+	public String getContactName() {
+		return contactName;
+	}
+
+	public void setContactName(String contactName) {
+		this.contactName = contactName;
+	}
+
+	public String getContactRelation() {
+		return contactRelation;
+	}
+
+	public void setContactRelation(String contactRelation) {
+		this.contactRelation = contactRelation;
+	}
+
+	public String getContactEmail() {
+		return contactEmail;
+	}
+
+	public void setContactEmail(String contactEmail) {
+		this.contactEmail = contactEmail;
+	}
+
+	public String getContactPhone() {
+		return contactPhone;
+	}
+
+	public void setContactPhone(String contactPhone) {
+		this.contactPhone = contactPhone;
+	}
+
+	public Integer getPersonId() {
+		return personId;
+	}
+
+	public void setPersonId(Integer personId) {
+		this.personId = personId;
+	}
+	
+	
 }

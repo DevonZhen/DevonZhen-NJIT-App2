@@ -13,4 +13,21 @@ public class PhoneType {
 	
 	@Column(name = "PHONE_TYPE")
 	private String phoneType;
+
+	public Integer getPhoneTypeId() {
+		return phoneTypeId;
+	}
+
+	public void setPhoneTypeId(Integer phoneTypeId) {
+		this.phoneTypeId = phoneTypeId;
+	}
+
+	public String getPhoneType() {
+		return phoneType;
+	}
+
+	public void setPhoneType(String phoneType) {
+		this.phoneType = phoneType;
+	}
+	
 }

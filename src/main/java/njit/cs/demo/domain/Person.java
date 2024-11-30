@@ -1,5 +1,6 @@
 package njit.cs.demo.domain;
 import java.util.Date;
+import java.util.Set;
 
 import jakarta.persistence.*;
 
@@ -35,16 +36,20 @@ public class Person {
 	private Integer personTypeId;
 
 	//Table Mapping
-	
-//	@OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "ADD_ID")
-//	private Address address;
-	
 	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "PER_ID")
-	private Phones phones;
+    @JoinColumn(name = "ADD_ID")
+	private Address address;
 	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name="PER_ID" )
+	private Set<Phones> phones;
 	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name="PER_ID" )
+	private Set<EmgContact> emgContact;
+	
+
+	// Setters & Getters
 	public String getFirstName() {
 		return firstName;
 	}
@@ -108,6 +113,30 @@ public class Person {
 	public void setPersonTypeId(Integer personTypeId) {
 		this.personTypeId = personTypeId;
 	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public Set<Phones> getPhones() {
+		return phones;
+	}
+
+	public void setPhones(Set<Phones> phones) {
+		this.phones = phones;
+	}
 	
+	public Set<EmgContact> getEmgContact() {
+		return emgContact;
+	}
+
+	public void setEmgContact(Set<EmgContact> emgContact) {
+		this.emgContact = emgContact;
+	}
+
 	
 }

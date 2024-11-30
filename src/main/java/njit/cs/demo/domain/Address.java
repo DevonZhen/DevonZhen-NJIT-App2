@@ -23,10 +23,6 @@ public class Address {
 	@Column(name = "ZIP")
 	private Integer zip;
 	
-//	@OneToOne(mappedBy="address")
-//    private Person person;
-
-
 	public Integer getAddressId() {
 		return addressId;
 	}
