@@ -1,4 +1,5 @@
 package njit.cs.demo.domain;
+
 import java.util.Date;
 import java.util.Set;
 
@@ -18,7 +19,7 @@ public class Person {
 	private String password;
 	
 	@Column(name = "SSN")
-	private Integer ssn;
+	private Long ssn;
 	
 	@Column(name = "UID")
 	private String uid;
@@ -29,15 +30,19 @@ public class Person {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "PER_ID")
-	private Integer personId;
+	private Long personId;
 	
-	@Column(name = "PERT_ID")
-	private Integer personTypeId;
+//	@Column(name = "PERT_ID")
+//	private Long personTypeId;
 
 	//Table Mapping
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ADD_ID")
 	private Address address;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "PERT_ID")
+	private PersonType personType;
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name="PER_ID" )
@@ -73,11 +78,11 @@ public class Person {
 		this.password = password;
 	}
 
-	public Integer getSsn() {
+	public Long getSsn() {
 		return ssn;
 	}
 
-	public void setSsn(Integer ssn) {
+	public void setSsn(Long ssn) {
 		this.ssn = ssn;
 	}
 
@@ -97,25 +102,34 @@ public class Person {
 		this.birthday = birthday;
 	}
 
-	public Integer getPersonId() {
+	public Long getPersonId() {
 		return personId;
 	}
 
-	public void setPersonId(Integer personId) {
+	public void setPersonId(Long personId) {
 		this.personId = personId;
 	}
 
-	public Integer getPersonTypeId() {
-		return personTypeId;
+//	public Long getPersonTypeId() {
+//		return personTypeId;
+//	}
+//
+//	public void setPersonTypeId(Long personTypeId) {
+//		this.personTypeId = personTypeId;
+//	}
+	
+	public PersonType getPersonType() {
+		return personType;
 	}
 
-	public void setPersonTypeId(Integer personTypeId) {
-		this.personTypeId = personTypeId;
+	public void setPersonType(PersonType personType) {
+		this.personType = personType;
 	}
 
 	public Address getAddress() {
 		return address;
 	}
+
 
 	public void setAddress(Address address) {
 		this.address = address;

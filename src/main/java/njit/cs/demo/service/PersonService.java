@@ -2,19 +2,25 @@ package njit.cs.demo.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import njit.cs.demo.domain.Person;
-import njit.cs.demo.repository.PersonRepository;
+import njit.cs.demo.domain.PersonType;
 
-@Service
-public class PersonService {
-
-		@Autowired
-		private PersonRepository personRepository;
+/*
+ * Combining Person and Person Types Service  into one repository (was 2 in old version)
+ */
+public interface PersonService {
+	
+		//Person
+		List<Person> findAll();
+		Person save(Person person);
 		
-		public List<Person> findAll(){
-			return personRepository.findAll();
-		}
+		Person findByUidAndPassword(String uid, String pwd);
+		Person getPersonBySSN(Long ssn);
+		void deletePerson(Long id);
+		
+		
+		//Person Types
+		List<PersonType> getPersonTypes();
+		
+		PersonType getPersonTypeByType(String type);
 }

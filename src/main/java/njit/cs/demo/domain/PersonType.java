@@ -11,7 +11,23 @@ public class PersonType {
 	@Column(name = "PERT_ID")
 	private Integer personTypeId;
 	
-	@Column(name = "PERSON_TYPE")
+	@Column(name = "TYPE")
 	private String personType;
+
+	public Integer getPersonTypeId() {
+		return personTypeId;
+	}
+
+	public void setPersonTypeId(Integer personTypeId) {
+		this.personTypeId = personTypeId;
+	}
+
+	public String getPersonType() {
+		return personType;
+	}
+
+	public void setPersonType(String personType) {
+		this.personType = personType;
+	}
 
 }
