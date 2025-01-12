@@ -11,6 +11,7 @@ import njit.cs.demo.domain.*;
 import njit.cs.demo.service.PersonService;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class PersonController {
 	
 	@Autowired
@@ -49,6 +50,7 @@ public class PersonController {
 	@PostMapping("/postPerson")
 	public Person postPerson(@RequestBody Person person) {
 		try{
+			System.out.println("Person: "+person.getPersonTypeId());
 			personService.save(person);
 		}catch(Exception e) {
 			System.out.println("Error posting Person...");
@@ -61,7 +63,7 @@ public class PersonController {
 	@DeleteMapping("/deletePerson/{id}")
 	public void deletePerson(@PathVariable Long id) {
 		try{
-			personService.deletePerson(id);
+			personService.deleteById(id);
 		}catch(Exception e) {
 			System.out.println("Error deleting person... ");
 			

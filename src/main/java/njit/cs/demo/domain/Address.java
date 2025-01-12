@@ -7,7 +7,8 @@ import jakarta.persistence.*;
 public class Address {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@SequenceGenerator(name="id_Sequence", sequenceName="seq_address", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="id_Sequence")
 	@Column(name = "ADD_ID")
 	private Integer addressId;
 	
@@ -22,6 +23,8 @@ public class Address {
 	
 	@Column(name = "ZIP")
 	private Integer zip;
+	
+//	===========================================================================
 	
 	public Integer getAddressId() {
 		return addressId;

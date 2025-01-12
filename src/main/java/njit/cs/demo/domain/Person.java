@@ -9,6 +9,12 @@ import jakarta.persistence.*;
 @Table(name = "PERSON")
 public class Person {
 	
+	@Id
+	@SequenceGenerator(name="id_Sequence", sequenceName="seq_person", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="id_Sequence")
+	@Column(name = "PER_ID")
+	private Long id;
+	
 	@Column(name = "FIRST_NAME")
 	private String firstName;
 	
@@ -25,34 +31,37 @@ public class Person {
 	private String uid;
 	
 	@Column(name = "BIRTH_DAY")
+	@Temporal(TemporalType.DATE)
 	private Date birthday;
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "PER_ID")
-	private Long personId;
 	
-//	@Column(name = "PERT_ID")
-//	private Long personTypeId;
+	@Column(name = "PERT_ID")
+	private Long personTypeId;
 
+//	===========================================================================
 	//Table Mapping
+	
+	//Person(Foreign key:ADD_ID) --> Address(Primary key:ADD_ID)
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ADD_ID")
 	private Address address;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "PERT_ID")
-	private PersonType personType;
+//	@OneToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(name = "PERT_ID")
+//	private PersonType personType;
 	
+	//Person(Primary key:PER_ID) --> EmgContact(Foreign key:PER_ID)
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="PER_ID", referencedColumnName = "id")
+	private EmgContact emgContact;
+
+	
+	//Person(Primary key:PER_ID) --> Phones(Foreign key:PER_ID)
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name="PER_ID" )
 	private Set<Phones> phones;
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name="PER_ID" )
-	private Set<EmgContact> emgContact;
-	
-
+//	===========================================================================
 	// Setters & Getters
 	public String getFirstName() {
 		return firstName;
@@ -102,29 +111,30 @@ public class Person {
 		this.birthday = birthday;
 	}
 
-	public Long getPersonId() {
-		return personId;
+	public Long getId() {
+		return id;
 	}
 
-	public void setPersonId(Long personId) {
-		this.personId = personId;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-//	public Long getPersonTypeId() {
-//		return personTypeId;
+	public Long getPersonTypeId() {
+		return personTypeId;
+	}
+
+	public void setPersonTypeId(Long personTypeId) {
+		this.personTypeId = personTypeId;
+	}
+	
+
+//	public PersonType getPersonType() {
+//		return personType;
 //	}
 //
-//	public void setPersonTypeId(Long personTypeId) {
-//		this.personTypeId = personTypeId;
+//	public void setPersonType(PersonType personType) {
+//		this.personType = personType;
 //	}
-	
-	public PersonType getPersonType() {
-		return personType;
-	}
-
-	public void setPersonType(PersonType personType) {
-		this.personType = personType;
-	}
 
 	public Address getAddress() {
 		return address;
@@ -143,11 +153,11 @@ public class Person {
 		this.phones = phones;
 	}
 	
-	public Set<EmgContact> getEmgContact() {
+	public EmgContact getEmgContact() {
 		return emgContact;
 	}
 
-	public void setEmgContact(Set<EmgContact> emgContact) {
+	public void setEmgContact(EmgContact emgContact) {
 		this.emgContact = emgContact;
 	}
 

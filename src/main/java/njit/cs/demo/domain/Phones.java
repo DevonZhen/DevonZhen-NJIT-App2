@@ -8,17 +8,22 @@ import jakarta.persistence.*;
 public class Phones {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@SequenceGenerator(name="id_Sequence", sequenceName="seq_phones", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="id_Sequence")
 	@Column(name = "PH_ID")
 	private Integer phoneId;
 	
 	@Column(name = "PHONE")
 	private String phone;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "PTY_ID")
-	private PhoneType phoneType;
+//    @Column(name = "PTY_ID")
+//	private Integer phoneType;
+    
+    @Column(name = "PH_TYPE")
+	private String  phoneType;
 
+//	===========================================================================
+    
 	public Integer getPhoneId() {
 		return phoneId;
 	}
@@ -35,12 +40,20 @@ public class Phones {
 		this.phone = phone;
 	}
 
-	public PhoneType getPhoneType() {
+	public String getPhoneType() {
 		return phoneType;
 	}
 
-	public void setPhoneType(PhoneType phoneType) {
+	public void setPhoneType(String phoneType) {
 		this.phoneType = phoneType;
 	}
+
+//	public Integer getPhoneType() {
+//		return phoneType;
+//	}
+//
+//	public void setPhoneType(Integer phoneType) {
+//		this.phoneType = phoneType;
+//	}
 
 }

@@ -16,7 +16,7 @@ public interface PersonService {
 		
 		Person findByUidAndPassword(String uid, String pwd);
 		Person getPersonBySSN(Long ssn);
-		void deletePerson(Long id);
+		void deleteById(Long id);
 		
 		
 		//Person Types

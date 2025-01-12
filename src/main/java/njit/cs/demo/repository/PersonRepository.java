@@ -11,11 +11,11 @@ import njit.cs.demo.domain.Person;
 public interface PersonRepository extends JpaRepository<Person, Long>{
 	
 	public List<Person> findAll();
-	public void deleteByPersonId(Long id);
+	public void deleteById(Long id);
 	
 	// [findBy]+<Uid>+<Password> (From the Person Domain)
 	public Person findByUidAndPassword(String uid, String pwd);
-	public Person save(Person person);
+//	public Person save(Person person);
 	
 	@Query("Select  p FROM Person p WHERE ssn = ?1")
 	public Person getPersonBySSN(Long ssn);

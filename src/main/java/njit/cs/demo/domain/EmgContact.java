@@ -6,7 +6,8 @@ import jakarta.persistence.*;
 @Table(name = "EMGCONTACT")
 public class EmgContact {
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@SequenceGenerator(name="id_Sequence", sequenceName="seq_emgcontact", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="id_Sequence")
 	@Column(name = "ECT_ID")
 	private Integer emgContactId;
 	
@@ -22,8 +23,10 @@ public class EmgContact {
 	@Column(name = "CONTACT_PHONE")
 	private String contactPhone;
 	
-	@Column(name = "PER_ID")
-	private Integer personId;
+//	@Column(name = "PER_ID")
+//	private Integer personId;
+	
+//	===========================================================================
 
 	public Integer getEmgContactId() {
 		return emgContactId;
@@ -65,13 +68,21 @@ public class EmgContact {
 		this.contactPhone = contactPhone;
 	}
 
-	public Integer getPersonId() {
-		return personId;
-	}
+//	public Integer getPersonId() {
+//		return personId;
+//	}
+//
+//	public void setPersonId(Integer personId) {
+//		this.personId = personId;
+//	}
 
-	public void setPersonId(Integer personId) {
-		this.personId = personId;
-	}
-	
+//	public Person getPerson() {
+//		return person;
+//	}
+//
+//	public void setPerson(Person person) {
+//		this.person = person;
+//	}
+//	
 	
 }

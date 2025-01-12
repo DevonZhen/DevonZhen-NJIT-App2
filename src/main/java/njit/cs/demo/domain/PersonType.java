@@ -7,13 +7,16 @@ import jakarta.persistence.*;
 public class PersonType {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@SequenceGenerator(name="id_Sequence", sequenceName="seq_pertype", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="id_Sequence")
 	@Column(name = "PERT_ID")
 	private Integer personTypeId;
 	
 	@Column(name = "TYPE")
 	private String personType;
 
+//	===========================================================================
+	
 	public Integer getPersonTypeId() {
 		return personTypeId;
 	}
