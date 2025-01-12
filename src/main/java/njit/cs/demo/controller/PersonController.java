@@ -50,11 +50,10 @@ public class PersonController {
 	@PostMapping("/postPerson")
 	public Person postPerson(@RequestBody Person person) {
 		try{
-			System.out.println("Person: "+person.getPersonTypeId());
 			personService.save(person);
 		}catch(Exception e) {
 			System.out.println("Error posting Person...");
-
+			e.printStackTrace();
 		}
 		return person;
 	};

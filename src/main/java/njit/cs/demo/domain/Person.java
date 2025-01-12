@@ -3,6 +3,7 @@ package njit.cs.demo.domain;
 import java.util.Date;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.*;
@@ -37,8 +38,8 @@ public class Person {
 	private Date birthday;
 	
 	
-	@Column(name = "PERT_ID")
-	private Long personTypeId;
+//	@Column(name = "PERT_ID")
+//	private Long personTypeId;
 
 //	===========================================================================
 	//Table Mapping
@@ -48,17 +49,17 @@ public class Person {
     @JoinColumn(name = "ADD_ID")
 	private Address address;
 	
-//	@OneToOne(cascade = CascadeType.ALL)
-//	@JoinColumn(name = "PERT_ID")
-//	private PersonType personType;
+	@OneToOne
+	@JoinColumn(name = "PERT_ID")
+	private PersonType personType;
 	
 	//Person(Primary key:PER_ID) --> EmgContact(Foreign key:PER_ID)
 //	@OneToOne(cascade = CascadeType.ALL)
 //	@JoinColumn(name="PER_ID", referencedColumnName = "id")
 //	private EmgContact emgContact;
 	
-	//JsonManagedReference is used with OneToOne annotation in JPA from Jackson Library
-	// that is used for Bidirectional relationship  and if you get the looping JSON
+	//JsonManagedReference (and @JsonBackReference in EmgContact domain) is used with OneToOne annotation in JPA from Jackson Library
+	//Is used for Bidirectional relationship  and if you get the looping JSON error
 	@OneToOne(mappedBy= "person", cascade = CascadeType.ALL)
 	@JsonManagedReference
 	private EmgContact emgContact;
@@ -127,22 +128,21 @@ public class Person {
 		this.id = id;
 	}
 
-	public Long getPersonTypeId() {
-		return personTypeId;
-	}
-
-	public void setPersonTypeId(Long personTypeId) {
-		this.personTypeId = personTypeId;
-	}
-	
-
-//	public PersonType getPersonType() {
-//		return personType;
+//	public Long getPersonTypeId() {
+//		return personTypeId;
 //	}
 //
-//	public void setPersonType(PersonType personType) {
-//		this.personType = personType;
+//	public void setPersonTypeId(Long personTypeId) {
+//		this.personTypeId = personTypeId;
 //	}
+	
+	public PersonType getPersonType() {
+		return personType;
+	}
+
+	public void setPersonType(PersonType personType) {
+		this.personType = personType;
+	}
 
 	public Address getAddress() {
 		return address;
