@@ -3,6 +3,8 @@ package njit.cs.demo.domain;
 import java.util.Date;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -51,8 +53,14 @@ public class Person {
 //	private PersonType personType;
 	
 	//Person(Primary key:PER_ID) --> EmgContact(Foreign key:PER_ID)
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="PER_ID", referencedColumnName = "id")
+//	@OneToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(name="PER_ID", referencedColumnName = "id")
+//	private EmgContact emgContact;
+	
+	//JsonManagedReference is used with OneToOne annotation in JPA from Jackson Library
+	// that is used for Bidirectional relationship  and if you get the looping JSON
+	@OneToOne(mappedBy= "person", cascade = CascadeType.ALL)
+	@JsonManagedReference
 	private EmgContact emgContact;
 
 	

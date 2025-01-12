@@ -1,5 +1,7 @@
 package njit.cs.demo.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -23,8 +25,10 @@ public class EmgContact {
 	@Column(name = "CONTACT_PHONE")
 	private String contactPhone;
 	
-//	@Column(name = "PER_ID")
-//	private Integer personId;
+	@OneToOne
+    @JoinColumn(name = "PER_ID")  
+    @JsonBackReference  
+	private Person person;
 	
 //	===========================================================================
 
@@ -68,21 +72,4 @@ public class EmgContact {
 		this.contactPhone = contactPhone;
 	}
 
-//	public Integer getPersonId() {
-//		return personId;
-//	}
-//
-//	public void setPersonId(Integer personId) {
-//		this.personId = personId;
-//	}
-
-//	public Person getPerson() {
-//		return person;
-//	}
-//
-//	public void setPerson(Person person) {
-//		this.person = person;
-//	}
-//	
-	
 }
